@@ -15,64 +15,69 @@ public class MainActivity extends AppCompatActivity {
 
 
 //    Deklarasi variable
-    private Button btnHello;
-    private TextView txtNama;
-    private ImageView imgProfile;
-    private TextView txtUmur;
-    private Button btnPindahHalaman;
+private Button btnhello;
+    private Button btnhello2;
+    private TextView txtnama;
+    private TextView txtumur;
+    private TextView txtkelas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.latihan);
+        setContentView(R.layout.activity_main);
 
         //Inisiasi variable
-        btnHello = findViewById(R.id.btnHello);
-        txtNama = findViewById(R.id.txtNama);
-        imgProfile = findViewById(R.id.imgProfile);
-        txtUmur = findViewById(R.id.txtUmur);
-        btnPindahHalaman = findViewById(R.id.btnPindahHalaman);
-
-        btnHello.setOnClickListener(new View.OnClickListener() {
+        btnhello = findViewById(R.id.btnhello);
+        btnhello2 = findViewById(R.id.btnhello2);
+        txtnama = findViewById(R.id.txtnama);
+        txtumur = findViewById(R.id.txtumur);
+        txtkelas = findViewById(R.id.txtkelas);
+        btnhello.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                bilangHalo();
-                gantiNama();
-                gantiGambar();
-                gantiWarnaUmur();
+            public void onClick(View v) {
+                gantinama();
+                gantiumur();
+                gantikelas();
+                gantiwarnaumur();
             }
         });
-
-        btnPindahHalaman.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnhello2.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                BilangHallo();
                 pindahHalaman();
             }
         });
 
     }
 
+    private void gantiwarnaumur() {
+        txtumur.setTextColor(Color.parseColor("#FF00FF"));
+    }
+
+    private void gantikelas() {
+        Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
+    }
+
+    private void gantiumur() {
+        Toast.makeText(this, "10 th", Toast.LENGTH_SHORT).show();
+    }
+
+    private void gantinama() {
+        Toast.makeText(this, "Ahmad", Toast.LENGTH_SHORT).show();
+    }
+
+    private void BilangHallo() {
+        Toast.makeText(this, "Hallo", Toast.LENGTH_SHORT).show();
+    }
+
     private void pindahHalaman() {
-        Intent pindahHalaman = new Intent(MainActivity.this, Halaman2.class);
-        startActivity(pindahHalaman);
-    }
+        Intent intentPindahHalaman =
+                new Intent(MainActivity.this, Halaman2.class);
 
-    private void gantiWarnaUmur() {
-//        txtUmur.setTextColor(getResources().getColor(R.color.colorPrimary));
-        txtUmur.setTextColor(Color.parseColor("#FF00FF"));
-    }
+        //mengirim data dengan format: variabel, isi
+        intentPindahHalaman.putExtra("nama", "Eli Siti Saadah");
+        intentPindahHalaman.putExtra("umur", "17 th");
 
-    private void gantiGambar() {
-        imgProfile.setImageResource(R.drawable.ic_gunung);
-    }
-
-    private void gantiNama() {
-        txtNama.setText("Wahyu");
-    }
-
-    private void bilangHalo() {
-        Toast.makeText(MainActivity.this,
-                "Halo SMK Al Falah",
-                Toast.LENGTH_LONG).show();
+        startActivity(intentPindahHalaman);
     }
 }
